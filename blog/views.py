@@ -1,13 +1,12 @@
 from datetime import datetime
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.views.generic.simple import direct_to_template
 from blog.models import BlogPost, BlogPostForm
 
 def archive(request):
     posts = BlogPost.objects.all()[:10]
-    return render_to_response('archive.html', {'posts': posts, 'form': BlogPostForm()}, RequestContext(request))
-
+    return direct_to_template(request, 'archive.html', {'posts': posts, 'forms': BlogPostForm()})
 # Lamda function 1 line cheat :P
 
 # archive = lambda req: render_to_response('archive.html', {'posts': BlogPost.objects.all()[:10], 'form': BlogPostForm()}, RequestContext(req))

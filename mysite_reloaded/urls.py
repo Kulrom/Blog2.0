@@ -5,6 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^$', 'django.views.generic.simple.redirect_to', {'url': '/blog/'}),
     (r'^blog/', include('blog.urls')),
     (r'^admin/', include(admin.site.urls)),
 
